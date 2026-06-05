@@ -1,7 +1,7 @@
 .homeContainer { display: flex; flex-direction: column; height: 100%; background: white; }
 .heroCarousel { position: relative; flex: 1; background: #f6f6f6; }
 .heroCarousel img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.heroDots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+.heroDots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
 .heroDots span { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; transition: 0.2s; }
 .heroDots span:hover, .heroDots span.dotActive { background: white; }
 .countdownBar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 16px; color: white; }
@@ -11,32 +11,32 @@
 
 .screenTitle { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; margin: 0; padding: 16px 16px 12px; color: #2741e8; text-transform: uppercase; font-weight: 700; }
 
-.chatScreen { display: flex; flex-direction: column; height: 100%; }
+.chatScreen { display: flex; flex-direction: column; height: 100%; background: white; }
 .chatMessages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .chatUserMsg { align-self: flex-end; max-width: 80%; }
 .chatUserMsg p { background: #2741e8; color: white; padding: 10px 12px; border-radius: 12px; margin: 0; }
 .chatBotMsg { align-self: flex-start; max-width: 80%; }
 .chatBotMsg p { background: #f6f6f6; color: #0f0f0f; padding: 10px 12px; border-radius: 12px; margin: 0; }
-.chatTyping { font-size: 12px; color: #666; font-style: italic; }
+.chatTyping { font-size: 12px; color: #666; font-style: italic; margin-left: 16px; }
 .chatSuggestions { padding: 0 16px 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .chatSuggestBtn { padding: 10px; background: white; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; cursor: pointer; font-size: 12px; }
 .chatInput { display: flex; gap: 8px; padding: 12px 16px 16px; }
 .chatInput input { flex: 1; padding: 10px 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; }
 .chatInput button { padding: 10px 16px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; }
 
-.prayerScreen { display: flex; flex-direction: column; height: 100%; }
+.prayerScreen { display: flex; flex-direction: column; height: 100%; background: white; }
 .toggleFormBtn { margin: 12px 16px 0; padding: 12px 16px; background: white; color: #2741e8; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; cursor: pointer; font-weight: 600; }
 .prayerForm { margin: 12px 16px; padding: 16px; background: white; border: 1px solid rgba(39,65,232,0.18); border-radius: 14px; display: flex; flex-direction: column; gap: 12px; }
 .formCheckbox { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
-.formInput { padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; }
+.formInput { padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; width: 100%; }
 .submitBtn { width: 100%; padding: 14px; background: #2741e8; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; }
-.categoryFilters { display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto; }
+.categoryFilters { display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto; overflow-y: hidden; }
 .categoryPill { padding: 8px 14px; background: rgba(39,65,232,0.06); border: 1px solid rgba(39,65,232,0.2); border-radius: 20px; cursor: pointer; font-size: 12px; color: #2741e8; white-space: nowrap; }
 .categoryPillActive { background: #2741e8; color: white; border-color: #2741e8; }
 .prayerList { flex: 1; overflow-y: auto; padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
 .prayerCard { background: white; padding: 16px; border-radius: 14px; border: 1px solid rgba(39,65,232,0.12); }
 .prayerHeader { display: flex; gap: 12px; margin-bottom: 12px; }
-.avatarCircle { width: 32px; height: 32px; border-radius: 50%; background: rgba(39,65,232,0.15); color: #2741e8; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: 700; }
+.avatarCircle { width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: rgba(39,65,232,0.15); color: #2741e8; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: 700; }
 .prayerInfo { flex: 1; }
 .prayerInfo h3 { margin: 0; font-family: 'Cinzel', serif; font-size: 12px; }
 .prayerInfo p { margin: 2px 0 0; font-size: 10px; color: #888; }
@@ -44,7 +44,7 @@
 .prayerText { margin: 8px 0; font-size: 13px; }
 .prayButton { padding: 8px 12px; background: rgba(39,65,232,0.06); border: 1px solid rgba(39,65,232,0.2); border-radius: 20px; cursor: pointer; font-size: 12px; color: #2741e8; width: 100%; }
 
-.giveScreen { padding: 16px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.giveScreen { padding: 16px; display: flex; flex-direction: column; gap: 16px; height: 100%; background: white; }
 .scriptureHero { text-align: center; padding: 20px; background: white; border: 1px solid rgba(39,65,232,0.18); border-radius: 16px; }
 .scriptureHero p { margin: 8px 0; font-size: 14px; }
 .scriptureHero p:first-child { font-size: 32px; }
@@ -61,17 +61,17 @@
 .wayCard h4 { margin: 0; font-family: 'Cinzel', serif; font-size: 12px; }
 .wayCard p { margin: 4px 0 0; font-size: 12px; color: #666; }
 
-.liveScreen { padding: 16px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
-.streamBox { background: white; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); flex: 1; }
+.liveScreen { padding: 16px; display: flex; flex-direction: column; gap: 16px; height: 100%; background: white; }
+.streamBox { background: white; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); flex: 1; min-height: 300px; overflow: hidden; }
 .streamPlaceholder { background: #000; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; border-radius: 14px; gap: 16px; }
 .liveChat { background: white; padding: 16px; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); }
 .liveChat h3 { margin: 0 0 12px 0; font-family: 'Cinzel', serif; font-size: 12px; color: #2741e8; }
 .chatBox { background: #f6f6f6; padding: 12px; border-radius: 8px; display: flex; flex-direction: column; gap: 8px; }
 .chatBox > div { padding: 8px; background: white; border-radius: 6px; font-size: 12px; }
 
-.eventsScreen { display: flex; flex-direction: column; height: 100%; }
+.eventsScreen { display: flex; flex-direction: column; height: 100%; background: white; }
 .eventsList { flex: 1; overflow-y: auto; padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
-.eventCard { background: white; border-radius: 14px; border: 1px solid rgba(39,65,232,0.12); display: grid; grid-template-columns: 60px 1fr; }
+.eventCard { background: white; border-radius: 14px; border: 1px solid rgba(39,65,232,0.12); display: grid; grid-template-columns: 60px 1fr; overflow: hidden; }
 .eventCardFeatured { border: 2px solid #2741e8; }
 .dateBadge { background: rgba(39,65,232,0.08); border-right: 1px solid rgba(39,65,232,0.15); padding: 14px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .month { font-family: 'Cinzel', serif; font-size: 10px; color: #2741e8; letter-spacing: 1px; }
@@ -82,9 +82,9 @@
 .eventCategory { padding: 2px 6px; background: rgba(39,65,232,0.1); color: #2741e8; border-radius: 6px; font-size: 9px; }
 .eventMeta { margin: 2px 0; font-size: 11px; color: #666; display: flex; align-items: center; gap: 4px; }
 
-.podcastsScreen { padding: 16px; display: flex; flex-direction: column; height: 100%; }
-.platforms { margin-bottom: 12px; display: flex; gap: 8px; }
-.platformBtn { padding: 8px 12px; background: white; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; text-decoration: none; color: inherit; cursor: pointer; font-size: 12px; }
+.podcastsScreen { padding: 16px; display: flex; flex-direction: column; height: 100%; background: white; }
+.platforms { margin-bottom: 12px; display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden; }
+.platformBtn { padding: 8px 12px; background: white; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; text-decoration: none; color: inherit; cursor: pointer; font-size: 12px; white-space: nowrap; }
 .episodesList { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
 .episodeCard { background: white; border-radius: 14px; border: 1px solid rgba(39,65,232,0.18); display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px; }
 .episodeCard img { width: 120px; height: 90px; object-fit: cover; border-radius: 8px; }
@@ -92,7 +92,7 @@
 .series { font-size: 11px; color: #2741e8; margin: 4px 0 0 0; }
 .date { font-size: 11px; color: #666; margin: 4px 0 0 0; }
 
-.vodScreen { padding: 16px; display: flex; flex-direction: column; height: 100%; }
+.vodScreen { padding: 16px; display: flex; flex-direction: column; height: 100%; background: white; }
 .videoGrid { flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
 .videoCard { text-decoration: none; color: inherit; background: white; border-radius: 14px; border: 1px solid rgba(39,65,232,0.18); overflow: hidden; display: flex; flex-direction: column; }
 .videoCard img { width: 100%; height: 100px; object-fit: cover; }

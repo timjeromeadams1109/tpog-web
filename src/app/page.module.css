@@ -18,8 +18,8 @@
 .drawerItem:hover { background: #f6f6f6; }
 .drawerItem.drawerItemActive { background: rgba(39,65,232,0.08); color: #2741e8; border-left-color: #2741e8; font-weight: 600; }
 
-.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; }
-.screenContainer { flex: 1; overflow-y: auto; }
+.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; margin-top: 40px; }
+.screenContainer { flex: 1; overflow-y: auto; padding-bottom: 62px; overflow-x: hidden; }
 
 .bottomNav { display: flex; height: 62px; background: white; border-top: 1px solid rgba(0,0,0,0.1); align-items: stretch; position: relative; }
 .homeBtn { background: none; border: none; border-right: 1px solid rgba(0,0,0,0.1); width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; color: #999; transition: 0.2s; }
