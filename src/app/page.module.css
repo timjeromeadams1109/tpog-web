@@ -1,42 +1,52 @@
-.loading { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f6f5f2; }
-.spinner { width: 40px; height: 40px; border: 3px solid #eee; border-top: 3px solid #2741e8; border-radius: 50%; animation: spin 0.8s linear infinite; }
+.loading { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: white; }
+.spinner { width: 40px; height: 40px; border: 3px solid #eee; border-top-color: #2741e8; border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.appContainer { display: flex; flex-direction: column; min-height: 100vh; background: #f6f5f2; }
-.header { background: #2741e8; color: white; padding: 20px; }
-.headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.header h1 { margin: 0 0 4px 0; font-size: 28px; }
-.subtitle { margin: 0; font-size: 14px; opacity: 0.9; }
-.adminBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-.adminBtn:hover { background: #f0f0f0; }
+.appContainer { display: flex; flex-direction: column; min-height: 100vh; background: white; position: relative; }
 
-.nav { display: flex; gap: 8px; padding: 0 20px; border-bottom: 2px solid #ddd; overflow-x: auto; background: white; }
-.navBtn { padding: 12px 20px; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; border-bottom: 3px solid transparent; white-space: nowrap; }
-.navBtn.active { color: #2741e8; border-bottom-color: #2741e8; }
-.navBtn:hover { color: #2741e8; }
+.hamburger { position: absolute; top: 12px; left: 12px; background: none; border: none; cursor: pointer; z-index: 100; width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #2741e8; transition: 0.3s; }
 
-.main { flex: 1; max-width: 1200px; margin: 0 auto; width: 100%; padding: 20px; }
+.drawerOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 40; }
+.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: white; z-index: 50; transition: left 0.3s; overflow-y: auto; }
+.drawer.drawerOpen { left: 0; }
+.drawerHeader { padding: 20px; border-bottom: 1px solid rgba(39,65,232,0.2); }
+.drawerHeader h2 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 18px; color: #0f0f0f; }
+.drawerTagline, .drawerDenom, .drawerPastor { margin: 4px 0; font-size: 12px; color: #666; }
+.drawerNav { display: flex; flex-direction: column; padding: 12px 0; }
+.drawerItem { background: none; border: none; padding: 12px 16px; text-align: left; cursor: pointer; font-size: 14px; color: #666; transition: 0.2s; border-left: 3px solid transparent; }
+.drawerItem:hover { background: #f6f6f6; }
+.drawerItem.drawerItemActive { background: rgba(39,65,232,0.08); color: #2741e8; border-left-color: #2741e8; font-weight: 600; }
+
+.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; }
+.screenContainer { flex: 1; overflow-y: auto; }
+
+.bottomNav { display: flex; height: 62px; background: white; border-top: 1px solid rgba(0,0,0,0.1); align-items: stretch; position: relative; }
+.homeBtn { background: none; border: none; border-right: 1px solid rgba(0,0,0,0.1); width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 18px; padding: 4px; color: #666; }
+.homeBtn.active { color: #2741e8; font-weight: bold; }
+.navDivider { width: 1px; height: 32px; background: rgba(0,0,0,0.1); margin: auto 0; }
+.navScroll { flex: 1; display: flex; overflow-x: auto; gap: 0; }
+.navItem { background: none; border: none; padding: 8px 16px; cursor: pointer; font-size: 12px; color: #666; white-space: nowrap; min-width: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; }
+.navItem:hover { background: #f6f6f6; color: #2741e8; }
+.navItem.active { color: #2741e8; font-weight: 600; background: rgba(39,65,232,0.08); }
+
+.adminIcon { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: #2741e8; color: white; border: none; cursor: pointer; font-size: 24px; z-index: 60; }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-.modalBox { background: white; padding: 40px; border-radius: 8px; width: 100%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-.modalBox h2 { margin-top: 0; margin-bottom: 24px; }
+.modalBox { background: white; padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; }
+.modalBox h2 { margin: 0 0 24px 0; font-family: 'Cinzel', serif; }
 .modalBox form { display: flex; flex-direction: column; gap: 16px; }
-.modalBox input { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
-.modalBox input:focus { outline: none; border-color: #2741e8; box-shadow: 0 0 0 2px rgba(39,65,232,0.1); }
-.modalBox button { padding: 12px; background: #2741e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.modalBox input { padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-family: inherit; }
+.modalBox button { padding: 12px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 .modalBox button:hover { background: #1a2fb0; }
 .modalBox button[type="button"] { background: #ddd; color: #111; }
-.modalBox button[type="button"]:hover { background: #ccc; }
 .error { color: #991b1b; font-size: 12px; padding: 8px; background: #fee2e2; border-radius: 4px; }
 
-.adminContainer { display: flex; flex-direction: column; min-height: 100vh; background: #f5f5f5; }
-.adminHeader { background: #2741e8; color: white; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-.logoutBtn:hover { background: #f0f0f0; }
+.adminContainer { display: flex; flex-direction: column; min-height: 100vh; background: white; }
+.adminHeader { background: #2741e8; color: white; padding: 20px; }
+.headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
 @media (max-width: 768px) {
-  .nav { padding: 0 12px; }
-  .navBtn { padding: 10px 12px; font-size: 12px; }
-  .main { padding: 12px; }
-  .headerContent { flex-direction: column; gap: 12px; }
+  .drawer { width: 250px; left: -250px; }
 }
