@@ -9,3 +9,13 @@
 .card { background: white; padding: 16px; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); }
 .card h3 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 12px; }
 .card p { margin: 0; font-weight: 600; }
+.form { display: flex; gap: 8px; margin-bottom: 24px; }
+.form input { flex: 1; padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; }
+.form button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.form button:disabled { opacity: 0.6; cursor: not-allowed; }
+.list { display: flex; flex-direction: column; gap: 12px; }
+.item { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; align-items: center; padding: 12px; background: #f9f9f9; border-radius: 8px; border: 1px solid rgba(39,65,232,0.12); }
+.item img { width: 100px; height: 60px; object-fit: cover; border-radius: 6px; }
+.item p { margin: 0; font-size: 12px; }
+.url { color: #999; word-break: break-all; }
+.deleteBtn { padding: 8px 12px; background: #dc2626; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
