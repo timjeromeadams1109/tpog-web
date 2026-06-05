@@ -134,19 +134,35 @@ export default function App() {
             className={`${styles.homeBtn} ${activeScreen === 'home' ? styles.active : ''}`}
             onClick={() => setActiveScreen('home')}
           >
-            🏠<span>Home</span>
+            <span className="material-icons-outlined">home</span>
+            <span>Home</span>
           </button>
           <div className={styles.navDivider}></div>
           <div className={styles.navScroll}>
-            {menuItems.map(item => (
-              <button
-                key={item.module_key}
-                className={`${styles.navItem} ${activeScreen === item.module_key ? styles.active : ''}`}
-                onClick={() => setActiveScreen(item.module_key)}
-              >
-                {item.display_text}
-              </button>
-            ))}
+            {menuItems.map(item => {
+              const iconMap: Record<string, string> = {
+                'post': 'article',
+                'chat': 'chat_bubble',
+                'watch': 'ondemand_video',
+                'vod': 'ondemand_video',
+                'resources': 'link',
+                'donate': 'favorite',
+                'event': 'calendar_today',
+                'sermon': 'description',
+                'podcasts': 'podcasts',
+              }
+              const icon = iconMap[item.module_key] || 'circle'
+              return (
+                <button
+                  key={item.module_key}
+                  className={`${styles.navItem} ${activeScreen === item.module_key ? styles.active : ''}`}
+                  onClick={() => setActiveScreen(item.module_key)}
+                >
+                  <span className="material-icons-outlined">{icon}</span>
+                  <span>{item.display_text}</span>
+                </button>
+              )
+            })}
           </div>
         </nav>
 
