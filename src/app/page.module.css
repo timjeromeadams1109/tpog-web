@@ -9,10 +9,10 @@
 .hamburger span { display: block; width: 22px; height: 2px; background: #2741e8; transition: 0.3s ease; }
 
 .drawerOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 45; }
-.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: linear-gradient(135deg, #2741e8 0%, #1a2fb0 100%); z-index: 50; transition: left 0.3s ease; overflow-y: auto; box-shadow: 2px 0 16px rgba(0,0,0,0.25); }
+.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: linear-gradient(135deg, #2741e8 0%, #1a3ce0 100%); z-index: 50; transition: left 0.3s ease; overflow-y: auto; box-shadow: 2px 0 16px rgba(0,0,0,0.25); }
 .drawer.drawerOpen { left: 0; }
 .drawerHeader { padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); text-align: center; }
-.drawerHeader h2 { margin: 0 0 10px 0; font-family: 'Cinzel', serif; font-size: 20px; color: white; font-weight: 700; letter-spacing: 0.5px; }
+.drawerHeader h2 { margin: 0 0 10px 0; font-family: 'Poppins', sans-serif; font-size: 20px; color: white; font-weight: 700; letter-spacing: 0.5px; }
 .drawerTagline, .drawerDenom, .drawerPastor { margin: 4px 0; font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 400; }
 .drawerNav { display: flex; flex-direction: column; padding: 8px 0; }
 .drawerItem { background: none; border: none; padding: 12px 20px; text-align: left; cursor: pointer; font-size: 14px; color: white; transition: 0.2s ease; border-left: 3px solid transparent; display: flex; align-items: center; gap: 14px; font-weight: 500; }
@@ -22,45 +22,45 @@
 .drawerItem.drawerItemActive { background: rgba(255,255,255,0.15); border-left-color: white; font-weight: 600; }
 
 .mainContent { flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-.screenContainer { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; padding-bottom: 62px; }
+.screenContainer { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; padding-bottom: 70px; }
 
-.bottomNav { display: flex; height: 62px; background: #ffffff; border-top: 1px solid rgba(0,0,0,0.08); align-items: stretch; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; box-shadow: 0 -1px 8px rgba(0,0,0,0.06); }
-.homeBtn { background: none; border: none; border-right: 1px solid rgba(0,0,0,0.08); width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; color: #999; transition: 0.2s ease; flex-shrink: 0; }
+.bottomNav { display: flex; height: 70px; background: #ffffff; border-top: 1px solid #e5e7eb; align-items: stretch; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; box-shadow: 0 -1px 3px rgba(0,0,0,0.05); }
+.homeBtn { background: none; border: none; border-right: 1px solid #e5e7eb; width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; color: #6b7280; transition: 0.2s ease; flex-shrink: 0; }
 .homeBtn span:first-child { font-size: 24px; line-height: 1; display: flex; align-items: center; justify-content: center; }
-.homeBtn span:last-child { font-size: 10px; font-weight: 500; margin-top: 3px; letter-spacing: 0.3px; }
+.homeBtn span:last-child { font-size: 11.5px; font-weight: 500; margin-top: 3px; letter-spacing: 0.3px; }
 .homeBtn:active { background: rgba(39,65,232,0.08); }
-.homeBtn.active { color: #2741e8; }
-.navDivider { width: 1px; height: 32px; background: rgba(0,0,0,0.08); margin: auto 0; }
+.homeBtn.active { color: #2741e8; font-weight: 600; }
+.navDivider { width: 1px; height: 32px; background: #e5e7eb; margin: auto 0; }
 .navScroll { flex: 1; display: flex; overflow-x: auto; gap: 0; }
-.navItem { background: none; border: none; cursor: pointer; color: #999; white-space: nowrap; min-width: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s ease; padding: 0 6px; width: 75px; }
+.navItem { background: none; border: none; cursor: pointer; color: #6b7280; white-space: nowrap; min-width: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s ease; padding: 0 6px; width: 75px; }
 .navItem span:first-child { font-size: 24px; line-height: 1; display: flex; align-items: center; justify-content: center; }
-.navItem span:last-child { font-size: 10px; font-weight: 500; margin-top: 3px; text-align: center; width: 100%; letter-spacing: 0.3px; }
+.navItem span:last-child { font-size: 11.5px; font-weight: 500; margin-top: 3px; text-align: center; width: 100%; letter-spacing: 0.3px; }
 .navItem:active { background: rgba(39,65,232,0.08); }
-.navItem.active { color: #2741e8; }
+.navItem.active { color: #2741e8; font-weight: 600; }
 
 .adminIcon { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: #2741e8; color: white; border: none; cursor: pointer; font-size: 24px; z-index: 60; box-shadow: 0 4px 12px rgba(39,65,232,0.3); transition: 0.2s ease; }
 .adminIcon:active { box-shadow: 0 2px 8px rgba(39,65,232,0.2); }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
 .modalBox { background: #ffffff; padding: 32px; border-radius: 20px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-.modalBox h2 { margin: 0 0 24px 0; font-family: 'Cinzel', serif; font-size: 18px; color: #0f0f0f; font-weight: 700; letter-spacing: 1px; }
+.modalBox h2 { margin: 0 0 24px 0; font-family: 'Poppins', sans-serif; font-size: 18px; color: #111827; font-weight: 700; letter-spacing: 0px; }
 .modalBox form { display: flex; flex-direction: column; gap: 16px; }
-.modalBox input { padding: 13px 14px; border: 1px solid rgba(39,65,232,0.18); border-radius: 10px; font-family: inherit; font-size: 13px; background: white; color: #0f0f0f; }
+.modalBox input { padding: 13px 14px; border: 1px solid #e5e7eb; border-radius: 10px; font-family: inherit; font-size: 13px; background: white; color: #111827; }
 .modalBox input:focus { outline: none; border-color: #2741e8; box-shadow: 0 0 0 3px rgba(39,65,232,0.1); }
-.modalBox input::placeholder { color: #999; }
+.modalBox input::placeholder { color: #9ca3af; }
 .modalBox button { padding: 13px 20px; background: #2741e8; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s ease; }
-.modalBox button:active { background: #1a2fb0; }
+.modalBox button:active { background: #1a3ce0; }
 .modalBox button[type="button"] { background: #f0f0f0; color: #333; }
 .error { color: #991b1b; font-size: 12px; padding: 10px 12px; background: #fee2e2; border-radius: 8px; border-left: 3px solid #991b1b; }
 
 .adminContainer { display: flex; flex-direction: column; min-height: 100vh; background: #ffffff; }
-.adminHeader { background: linear-gradient(135deg, #2741e8 0%, #1a2fb0 100%); color: white; padding: 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.adminHeader h1 { margin: 0; font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+.adminHeader { background: linear-gradient(135deg, #2741e8 0%, #1a3ce0 100%); color: white; padding: 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.adminHeader h1 { margin: 0; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0px; }
 .headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s ease; }
 .logoutBtn:active { background: #f0f0f0; }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .drawer { width: 260px; left: -260px; }
   .hamburger { width: 36px; }
   .hamburger span { width: 20px; }
@@ -72,8 +72,8 @@
   .homeBtn { width: 65px; }
   .navItem { min-width: 65px; padding: 0 4px; width: 65px; }
   .navItem span:first-child { font-size: 22px; }
-  .navItem span:last-child { font-size: 9px; margin-top: 2px; }
-  .homeBtn span:last-child { font-size: 9px; }
+  .navItem span:last-child { font-size: 10px; margin-top: 2px; }
+  .homeBtn span:last-child { font-size: 10px; }
   .adminIcon { width: 44px; height: 44px; font-size: 20px; bottom: 16px; right: 16px; }
   .modalBox { padding: 24px; }
 }

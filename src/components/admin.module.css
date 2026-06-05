@@ -1,32 +1,41 @@
-.dashboard { padding: 20px; }
-.tabs { display: flex; gap: 8px; padding-bottom: 16px; border-bottom: 2px solid rgba(39,65,232,0.18); overflow-x: auto; }
-.tabs button { padding: 8px 16px; background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #666; border-bottom: 3px solid transparent; }
+.dashboard { padding: 20px; background: #f5f5f5; min-height: 100vh; }
+.tabs { display: flex; gap: 12px; padding: 0 0 16px; border-bottom: 2px solid #e5e7eb; overflow-x: auto; margin-bottom: 24px; }
+.tabs button { padding: 10px 16px; background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #6b7280; border-bottom: 3px solid transparent; transition: 0.2s ease; }
+.tabs button:hover { color: #2741e8; }
 .tabs button.active { color: #2741e8; border-bottom-color: #2741e8; }
 .content { max-width: 1000px; margin: 0 auto; }
-.section { background: white; padding: 24px; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); margin-top: 20px; }
-.section h2 { margin: 0 0 16px 0; font-family: 'Cinzel', serif; }
+.section { background: #ffffff; padding: 24px; border-radius: 14px; border: 1px solid #e5e7eb; margin-top: 24px; }
+.section h2 { margin: 0 0 16px 0; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #111827; }
+.section p { margin: 0; color: #6b7280; font-size: 13px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
-.card { background: white; padding: 16px; border-radius: 16px; border: 1px solid rgba(39,65,232,0.18); }
-.card h3 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 12px; }
-.card p { margin: 0; font-weight: 600; }
-.form { display: flex; gap: 8px; margin-bottom: 24px; }
-.form input { flex: 1; padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; }
-.form button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.card { background: white; padding: 16px; border-radius: 14px; border: 1px solid #e5e7eb; }
+.card h3 { margin: 0 0 8px 0; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; color: #2741e8; text-transform: uppercase; }
+.card p { margin: 0; font-weight: 600; color: #111827; }
+.form { display: flex; gap: 10px; margin-bottom: 24px; }
+.form input { flex: 1; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 13px; background: white; color: #111827; font-family: 'Poppins', sans-serif; }
+.form input:focus { outline: none; border-color: #2741e8; box-shadow: 0 0 0 3px rgba(39,65,232,0.1); }
+.form input::placeholder { color: #9ca3af; }
+.form button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s ease; white-space: nowrap; }
+.form button:hover { background: #1a3ce0; }
 .form button:disabled { opacity: 0.6; cursor: not-allowed; }
 .formGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
-.formGrid input, .formGrid label { padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; background: white; }
-.formGrid button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.formGrid input, .formGrid textarea, .formGrid label { padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 13px; background: white; color: #111827; font-family: 'Poppins', sans-serif; }
+.formGrid input:focus, .formGrid textarea:focus { outline: none; border-color: #2741e8; box-shadow: 0 0 0 3px rgba(39,65,232,0.1); }
+.formGrid input::placeholder, .formGrid textarea::placeholder { color: #9ca3af; }
+.formGrid button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s ease; }
+.formGrid button:hover { background: #1a3ce0; }
 .formGrid button:disabled { opacity: 0.6; cursor: not-allowed; }
 .list { display: flex; flex-direction: column; gap: 12px; }
-.item { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; align-items: center; padding: 12px; background: #f9f9f9; border-radius: 8px; border: 1px solid rgba(39,65,232,0.12); }
-.item img { width: 100px; height: 60px; object-fit: cover; border-radius: 6px; }
-.item p { margin: 0; font-size: 12px; }
-.url { color: #999; word-break: break-all; }
-.deleteBtn { padding: 8px 12px; background: #dc2626; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
+.item { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; align-items: center; padding: 14px; background: white; border-radius: 14px; border: 1px solid #e5e7eb; }
+.item img { width: 100px; height: 60px; object-fit: cover; border-radius: 8px; }
+.item p { margin: 0; font-size: 12px; color: #6b7280; }
+.url { color: #9ca3af; word-break: break-all; font-size: 11px; }
+.deleteBtn { padding: 8px 12px; background: #ef4444; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; transition: 0.2s ease; }
+.deleteBtn:hover { background: #dc2626; }
 .eventsList { display: flex; flex-direction: column; gap: 16px; }
-.eventItem { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: start; padding: 16px; background: #f9f9f9; border-radius: 8px; border: 1px solid rgba(39,65,232,0.12); }
-.eventItem img { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; }
+.eventItem { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: start; padding: 16px; background: white; border-radius: 14px; border: 1px solid #e5e7eb; }
+.eventItem img { width: 120px; height: 80px; object-fit: cover; border-radius: 8px; }
 .eventInfo { flex: 1; }
-.eventInfo h3 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 14px; }
-.eventInfo p { margin: 4px 0; font-size: 12px; color: #666; }
-.badge { display: inline-block; padding: 4px 8px; background: #2741e8; color: white; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 8px; }
+.eventInfo h3 { margin: 0 0 8px 0; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: #111827; }
+.eventInfo p { margin: 4px 0; font-size: 12px; color: #6b7280; }
+.badge { display: inline-block; padding: 4px 10px; background: #2741e8; color: white; border-radius: 8px; font-size: 11px; font-weight: 600; margin-top: 8px; }
