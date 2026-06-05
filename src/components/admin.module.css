@@ -13,9 +13,20 @@
 .form input { flex: 1; padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; }
 .form button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 .form button:disabled { opacity: 0.6; cursor: not-allowed; }
+.formGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.formGrid input, .formGrid label { padding: 12px; border: 1px solid rgba(39,65,232,0.18); border-radius: 8px; font-size: 13px; background: white; }
+.formGrid button { padding: 12px 20px; background: #2741e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.formGrid button:disabled { opacity: 0.6; cursor: not-allowed; }
 .list { display: flex; flex-direction: column; gap: 12px; }
 .item { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; align-items: center; padding: 12px; background: #f9f9f9; border-radius: 8px; border: 1px solid rgba(39,65,232,0.12); }
 .item img { width: 100px; height: 60px; object-fit: cover; border-radius: 6px; }
 .item p { margin: 0; font-size: 12px; }
 .url { color: #999; word-break: break-all; }
 .deleteBtn { padding: 8px 12px; background: #dc2626; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
+.eventsList { display: flex; flex-direction: column; gap: 16px; }
+.eventItem { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: start; padding: 16px; background: #f9f9f9; border-radius: 8px; border: 1px solid rgba(39,65,232,0.12); }
+.eventItem img { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; }
+.eventInfo { flex: 1; }
+.eventInfo h3 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 14px; }
+.eventInfo p { margin: 4px 0; font-size: 12px; color: #666; }
+.badge { display: inline-block; padding: 4px 8px; background: #2741e8; color: white; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 8px; }
