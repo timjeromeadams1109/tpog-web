@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import styles from './page.module.css'
-import HomeScreen from '@/components/screens/HomeScreen'
-import ChatScreen from '@/components/screens/ChatScreen'
-import PrayerScreen from '@/components/screens/PrayerScreen'
-import GiveScreen from '@/components/screens/GiveScreen'
-import LiveScreen from '@/components/screens/LiveScreen'
-import EventsScreen from '@/components/screens/EventsScreen'
-import PodcastsScreen from '@/components/screens/PodcastsScreen'
-import VodScreen from '@/components/screens/VodScreen'
-import AdminDashboard from '@/components/admin/AdminDashboard'
+import HomeScreen from '@/components/screens/Home'
+import ChatScreen from '@/components/screens/Chat'
+import PrayerScreen from '@/components/screens/Prayer'
+import GiveScreen from '@/components/screens/Give'
+import LiveScreen from '@/components/screens/Live'
+import EventsScreen from '@/components/screens/Events'
+import PodcastsScreen from '@/components/screens/Podcasts'
+import VodScreen from '@/components/screens/Vod'
+import AdminDashboard from '@/components/admin/Dashboard'
 
 const SCREENS = [
   { key: 'home', label: 'Home', component: HomeScreen },
@@ -40,8 +40,8 @@ export default function App() {
 
   const loadConfig = async () => {
     try {
-      const configData = await supabase.from('site_config').select('*').limit(1).maybeSingle()
-      setSiteConfig(configData.data)
+      const { data } = await supabase.from('site_config').select('*').limit(1).maybeSingle()
+      setSiteConfig(data)
     } catch (error) {
       console.error('Error loading config:', error)
     } finally {
@@ -63,14 +63,9 @@ export default function App() {
   }
 
   if (isLoading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.spinner}></div>
-      </div>
-    )
+    return <div className={styles.loading}><div className={styles.spinner}></div></div>
   }
 
-  // ADMIN VIEW
   if (isAdmin) {
     return (
       <div className={styles.adminContainer}>
@@ -78,7 +73,7 @@ export default function App() {
           <div className={styles.headerContent}>
             <div>
               <h1>{siteConfig?.church_name || 'TPOG'}</h1>
-              <p className={styles.tagline}>Admin Panel</p>
+              <p className={styles.subtitle}>Admin Panel</p>
             </div>
             <button onClick={logout} className={styles.logoutBtn}>Logout</button>
           </div>
@@ -88,7 +83,6 @@ export default function App() {
     )
   }
 
-  // PUBLIC APP VIEW
   const CurrentScreen = SCREENS.find(s => s.key === activeScreen)?.component || HomeScreen
 
   return (
@@ -96,16 +90,14 @@ export default function App() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <div>
-            <h1>{siteConfig?.church_name || 'TPOG'}</h1>
-            <p className={styles.tagline}>{siteConfig?.tagline || 'The Purpose Ordained Grace'}</p>
+            <h1>{siteConfig?.church_name || 'The Place of Grace Church Demo'}</h1>
+            <p className={styles.subtitle}>{siteConfig?.tagline || 'The Purpose Ordained Grace'}</p>
           </div>
-          <button onClick={() => setShowLoginModal(true)} className={styles.adminBtn}>
-            Admin
-          </button>
+          <button onClick={() => setShowLoginModal(true)} className={styles.adminBtn}>Admin</button>
         </div>
       </header>
 
-      <nav className={styles.navigation}>
+      <nav className={styles.nav}>
         {SCREENS.map(screen => (
           <button
             key={screen.key}
@@ -123,23 +115,13 @@ export default function App() {
 
       {showLoginModal && (
         <div className={styles.modal}>
-          <div className={styles.modalContent}>
+          <div className={styles.modalBox}>
             <h2>Admin Login</h2>
             <form onSubmit={handleLogin}>
-              <input
-                type="password"
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
-                placeholder="Password"
-                autoFocus
-              />
+              <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} placeholder="Password" autoFocus />
               {loginError && <div className={styles.error}>{loginError}</div>}
               <button type="submit">Login</button>
-              <button type="button" onClick={() => {
-                setShowLoginModal(false)
-                setLoginPassword('')
-                setLoginError('')
-              }}>Cancel</button>
+              <button type="button" onClick={() => { setShowLoginModal(false); setLoginPassword(''); setLoginError(''); }}>Cancel</button>
             </form>
           </div>
         </div>

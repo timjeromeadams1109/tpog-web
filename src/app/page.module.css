@@ -1,235 +1,42 @@
+.loading { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f6f5f2; }
+.spinner { width: 40px; height: 40px; border: 3px solid #eee; border-top: 3px solid #2741e8; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.loadingContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #f6f5f2;
-}
+.appContainer { display: flex; flex-direction: column; min-height: 100vh; background: #f6f5f2; }
+.header { background: #2741e8; color: white; padding: 20px; }
+.headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.header h1 { margin: 0 0 4px 0; font-size: 28px; }
+.subtitle { margin: 0; font-size: 14px; opacity: 0.9; }
+.adminBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.adminBtn:hover { background: #f0f0f0; }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #eee;
-  border-top: 3px solid #2741e8;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
+.nav { display: flex; gap: 8px; padding: 0 20px; border-bottom: 2px solid #ddd; overflow-x: auto; background: white; }
+.navBtn { padding: 12px 20px; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; border-bottom: 3px solid transparent; white-space: nowrap; }
+.navBtn.active { color: #2741e8; border-bottom-color: #2741e8; }
+.navBtn:hover { color: #2741e8; }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+.main { flex: 1; max-width: 1200px; margin: 0 auto; width: 100%; padding: 20px; }
 
-.adminContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #f5f5f5;
-}
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modalBox { background: white; padding: 40px; border-radius: 8px; width: 100%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+.modalBox h2 { margin-top: 0; margin-bottom: 24px; }
+.modalBox form { display: flex; flex-direction: column; gap: 16px; }
+.modalBox input { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
+.modalBox input:focus { outline: none; border-color: #2741e8; box-shadow: 0 0 0 2px rgba(39,65,232,0.1); }
+.modalBox button { padding: 12px; background: #2741e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.modalBox button:hover { background: #1a2fb0; }
+.modalBox button[type="button"] { background: #ddd; color: #111; }
+.modalBox button[type="button"]:hover { background: #ccc; }
+.error { color: #991b1b; font-size: 12px; padding: 8px; background: #fee2e2; border-radius: 4px; }
 
-.adminHeader {
-  background: #2741e8;
-  color: white;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.headerContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.headerContent h1 {
-  font-size: 28px;
-  margin-bottom: 4px;
-}
-
-.tagline {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.logoutBtn {
-  background: white;
-  color: #2741e8;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.logoutBtn:hover {
-  background: #f0f0f0;
-}
-
-.appContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #f6f5f2;
-}
-
-.header {
-  background: #2741e8;
-  color: white;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.header h1 {
-  font-size: 28px;
-  margin-bottom: 4px;
-}
-
-.adminBtn {
-  background: white;
-  color: #2741e8;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.adminBtn:hover {
-  background: #f0f0f0;
-}
-
-.navigation {
-  display: flex;
-  gap: 8px;
-  padding: 0 20px;
-  border-bottom: 2px solid #ddd;
-  overflow-x: auto;
-  background: white;
-}
-
-.navBtn {
-  padding: 12px 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  color: #666;
-  border-bottom: 3px solid transparent;
-  white-space: nowrap;
-}
-
-.navBtn.active {
-  color: #2741e8;
-  border-bottom-color: #2741e8;
-}
-
-.navBtn:hover {
-  color: #2741e8;
-}
-
-.main {
-  flex: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 20px;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
-}
-
-.modalContent h2 {
-  margin-bottom: 24px;
-  color: #111;
-  font-size: 24px;
-}
-
-.modalContent form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.modalContent input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: inherit;
-}
-
-.modalContent input:focus {
-  outline: none;
-  border-color: #2741e8;
-  box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
-}
-
-.modalContent button {
-  padding: 12px;
-  background: #2741e8;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.modalContent button:hover {
-  background: #1a2fb0;
-}
-
-.modalContent button[type="button"] {
-  background: #ddd;
-  color: #111;
-}
-
-.modalContent button[type="button"]:hover {
-  background: #ccc;
-}
-
-.error {
-  color: #991b1b;
-  font-size: 12px;
-  padding: 8px;
-  background: #fee2e2;
-  border-radius: 4px;
-}
+.adminContainer { display: flex; flex-direction: column; min-height: 100vh; background: #f5f5f5; }
+.adminHeader { background: #2741e8; color: white; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.logoutBtn:hover { background: #f0f0f0; }
 
 @media (max-width: 768px) {
-  .navigation {
-    padding: 0 12px;
-  }
-
-  .navBtn {
-    padding: 10px 12px;
-    font-size: 12px;
-  }
-
-  .main {
-    padding: 12px;
-  }
-
-  .headerContent {
-    flex-direction: column;
-    gap: 16px;
-  }
+  .nav { padding: 0 12px; }
+  .navBtn { padding: 10px 12px; font-size: 12px; }
+  .main { padding: 12px; }
+  .headerContent { flex-direction: column; gap: 12px; }
 }
