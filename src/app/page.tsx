@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import { supabase, AppContent, SiteConfig } from '@/lib/supabase'
+import { supabase, SiteConfig } from '@/lib/supabase'
 import styles from './page.module.css'
 
 const SCREENS = ['home', 'chat', 'prayer', 'give', 'live', 'events', 'podcasts', 'vod']
