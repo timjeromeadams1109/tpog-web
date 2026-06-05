@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import { supabase, AppContent, SiteConfig, MenuItem } from '@/lib/supabase'
+import { supabase, AppContent, SiteConfig } from '@/lib/supabase'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -11,7 +11,6 @@ export default function Home() {
   const [loginPassword, setLoginPassword] = useState('')
   const [loginError, setLoginError] = useState('')
   const [content, setContent] = useState<Record<string, AppContent[]>>({})
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
   const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -37,14 +36,6 @@ export default function Home() {
       })
       setContent(grouped)
 
-      const { data: menuData, error: menuError } = await supabase
-        .from('app_menu_items')
-        .select('*')
-        .eq('active', true)
-        .order('sort_order')
-
-      if (menuError) throw menuError
-      setMenuItems(menuData || [])
 
       const { data: configData, error: configError } = await supabase
         .from('site_config')
