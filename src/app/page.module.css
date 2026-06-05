@@ -106,7 +106,8 @@
   opacity: 0.9;
 }
 
-.btnLogout {
+.btnLogout,
+.btnAdmin {
   background: white;
   color: #2741e8;
   padding: 10px 20px;
@@ -116,7 +117,8 @@
   cursor: pointer;
 }
 
-.btnLogout:hover {
+.btnLogout:hover,
+.btnAdmin:hover {
   background: #f0f0f0;
 }
 
@@ -354,6 +356,81 @@
   outline: none;
   border-color: #2741e8;
   box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
+}
+
+.demoSection {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.demoSection h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.demoImage {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.demoImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.description {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.content {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ctaButton {
+  background: #2741e8;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.ctaButton:hover {
+  background: #1a2fb0;
+}
+
+.streamUrl,
+.status {
+  font-size: 14px;
+  color: #666;
+  margin-top: 12px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 6px;
 }
 
 @media (max-width: 768px) {

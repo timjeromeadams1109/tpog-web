@@ -20,7 +20,8 @@ const SCREEN_FIELDS: Record<string, string[]> = {
 
 export default function Home() {
   const { isAdmin, login, logout } = useAuth()
-  const [activeTab, setActiveTab] = useState('home')
+  const [view, setView] = useState<'demo' | 'login' | 'admin'>('demo')
+  const [activeScreen, setActiveScreen] = useState('home')
   const [loginPassword, setLoginPassword] = useState('')
   const [loginError, setLoginError] = useState('')
   const [content, setContent] = useState<Record<string, Record<string, string>>>({})
@@ -30,10 +31,16 @@ export default function Home() {
   const [editingKey, setEditingKey] = useState<string | null>(null)
   const [editValue, setEditValue] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const [activeTab, setActiveTab] = useState('home')
 
   useEffect(() => {
+    if (isAdmin) {
+      setView('admin')
+    } else {
+      setView('demo')
+    }
     loadAllContent()
-  }, [])
+  }, [isAdmin])
 
   const loadAllContent = async () => {
     try {
@@ -64,7 +71,7 @@ export default function Home() {
       if (configError) throw configError
       setSiteConfig(configData)
     } catch (error) {
-      showMessage('Error loading content', 'error')
+      console.error('Error loading content:', error)
     } finally {
       setIsLoading(false)
     }
@@ -152,7 +159,8 @@ export default function Home() {
     }
   }
 
-  if (!isAdmin) {
+  // LOGIN VIEW
+  if (view === 'login' || (!isAdmin && view === 'demo' && activeScreen === 'admin')) {
     return (
       <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
@@ -178,173 +186,255 @@ export default function Home() {
     )
   }
 
+  // ADMIN VIEW
+  if (isAdmin) {
+    return (
+      <div className={styles.appContainer}>
+        <header className={styles.header}>
+          <div className={styles.headerContent}>
+            <div>
+              <h1>{siteConfig?.church_name || 'TPOG'}</h1>
+              <p className={styles.tagline}>Content Manager</p>
+            </div>
+            <button onClick={logout} className={styles.btnLogout}>Logout</button>
+          </div>
+        </header>
+
+        {message.text && (
+          <div className={`${styles.message} ${styles[`message${message.type === 'success' ? 'Success' : 'Error'}`]}`}>
+            {message.text}
+          </div>
+        )}
+
+        <nav className={styles.tabs}>
+          {SCREENS.map(screen => (
+            <button
+              key={screen}
+              className={`${styles.tab} ${activeTab === screen ? styles.tabActive : ''}`}
+              onClick={() => setActiveTab(screen)}
+            >
+              {screen.charAt(0).toUpperCase() + screen.slice(1)}
+            </button>
+          ))}
+          <button
+            className={`${styles.tab} ${activeTab === 'config' ? styles.tabActive : ''}`}
+            onClick={() => setActiveTab('config')}
+          >
+            Config
+          </button>
+        </nav>
+
+        <main className={styles.main}>
+          {isLoading ? (
+            <p className={styles.loading}>Loading...</p>
+          ) : activeTab === 'config' ? (
+            <div className={styles.contentSection}>
+              <h2>Site Configuration</h2>
+              <div className={styles.configGrid}>
+                <div className={styles.configField}>
+                  <label>Church Name</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.church_name || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, church_name: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ church_name: siteConfig.church_name })}
+                    placeholder="Church name"
+                  />
+                </div>
+                <div className={styles.configField}>
+                  <label>Pastor Name</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.pastor_name || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, pastor_name: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ pastor_name: siteConfig.pastor_name })}
+                    placeholder="Pastor name"
+                  />
+                </div>
+                <div className={styles.configField}>
+                  <label>Tagline</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.tagline || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, tagline: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ tagline: siteConfig.tagline })}
+                    placeholder="Tagline"
+                  />
+                </div>
+                <div className={styles.configField}>
+                  <label>Denomination</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.denomination || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, denomination: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ denomination: siteConfig.denomination })}
+                    placeholder="Denomination"
+                  />
+                </div>
+                <div className={styles.configField}>
+                  <label>Logo URL</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.logo_url || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, logo_url: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ logo_url: siteConfig.logo_url })}
+                    placeholder="https://..."
+                  />
+                </div>
+                <div className={styles.configField}>
+                  <label>Primary Color</label>
+                  <input
+                    type="text"
+                    value={siteConfig?.primary_color || ''}
+                    onChange={(e) => setSiteConfig(prev => prev ? { ...prev, primary_color: e.target.value } : null)}
+                    onBlur={() => siteConfig && saveSiteConfig({ primary_color: siteConfig.primary_color })}
+                    placeholder="#2741e8"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.contentSection}>
+              <h2>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
+              <div className={styles.fieldsList}>
+                {SCREEN_FIELDS[activeTab]?.map(field => (
+                  <div key={field} className={styles.editField}>
+                    <div className={styles.fieldHeader}>
+                      <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
+                      {editingKey !== field && (
+                        <button
+                          className={styles.btnEdit}
+                          onClick={() => startEdit(field)}
+                        >
+                          Edit
+                        </button>
+                      )}
+                    </div>
+
+                    {editingKey === field ? (
+                      <div className={styles.editMode}>
+                        {field === 'description' || field === 'instructions' || field === 'welcome' || field === 'thankyou' ? (
+                          <textarea
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            placeholder={`Enter ${field}...`}
+                            rows={4}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            placeholder={`Enter ${field}...`}
+                          />
+                        )}
+                        <div className={styles.editActions}>
+                          <button
+                            className={styles.btnSave}
+                            onClick={() => saveField(field)}
+                            disabled={isSaving}
+                          >
+                            {isSaving ? 'Saving...' : 'Save'}
+                          </button>
+                          <button
+                            className={styles.btnCancel}
+                            onClick={cancelEdit}
+                            disabled={isSaving}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.viewMode}>
+                        <p className={styles.fieldValue}>
+                          {content[activeTab]?.[field] || '(Not set)'}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </main>
+      </div>
+    )
+  }
+
+  // PUBLIC DEMO VIEW
   return (
     <div className={styles.appContainer}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <div>
             <h1>{siteConfig?.church_name || 'TPOG'}</h1>
-            <p className={styles.tagline}>Content Manager</p>
+            <p className={styles.tagline}>{siteConfig?.tagline || 'The Purpose Ordained Grace'}</p>
           </div>
-          <button onClick={logout} className={styles.btnLogout}>Logout</button>
+          <button onClick={() => setView('login')} className={styles.btnAdmin}>Admin</button>
         </div>
       </header>
-
-      {message.text && (
-        <div className={`${styles.message} ${styles[`message${message.type === 'success' ? 'Success' : 'Error'}`]}`}>
-          {message.text}
-        </div>
-      )}
 
       <nav className={styles.tabs}>
         {SCREENS.map(screen => (
           <button
             key={screen}
-            className={`${styles.tab} ${activeTab === screen ? styles.tabActive : ''}`}
-            onClick={() => setActiveTab(screen)}
+            className={`${styles.tab} ${activeScreen === screen ? styles.tabActive : ''}`}
+            onClick={() => setActiveScreen(screen)}
           >
             {screen.charAt(0).toUpperCase() + screen.slice(1)}
           </button>
         ))}
-        <button
-          className={`${styles.tab} ${activeTab === 'config' ? styles.tabActive : ''}`}
-          onClick={() => setActiveTab('config')}
-        >
-          Config
-        </button>
       </nav>
 
       <main className={styles.main}>
         {isLoading ? (
           <p className={styles.loading}>Loading...</p>
-        ) : activeTab === 'config' ? (
-          <div className={styles.contentSection}>
-            <h2>Site Configuration</h2>
-            <div className={styles.configGrid}>
-              <div className={styles.configField}>
-                <label>Church Name</label>
-                <input
-                  type="text"
-                  value={siteConfig?.church_name || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, church_name: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ church_name: siteConfig.church_name })}
-                  placeholder="Church name"
-                />
-              </div>
-              <div className={styles.configField}>
-                <label>Pastor Name</label>
-                <input
-                  type="text"
-                  value={siteConfig?.pastor_name || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, pastor_name: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ pastor_name: siteConfig.pastor_name })}
-                  placeholder="Pastor name"
-                />
-              </div>
-              <div className={styles.configField}>
-                <label>Tagline</label>
-                <input
-                  type="text"
-                  value={siteConfig?.tagline || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, tagline: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ tagline: siteConfig.tagline })}
-                  placeholder="Tagline"
-                />
-              </div>
-              <div className={styles.configField}>
-                <label>Denomination</label>
-                <input
-                  type="text"
-                  value={siteConfig?.denomination || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, denomination: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ denomination: siteConfig.denomination })}
-                  placeholder="Denomination"
-                />
-              </div>
-              <div className={styles.configField}>
-                <label>Logo URL</label>
-                <input
-                  type="text"
-                  value={siteConfig?.logo_url || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, logo_url: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ logo_url: siteConfig.logo_url })}
-                  placeholder="https://..."
-                />
-              </div>
-              <div className={styles.configField}>
-                <label>Primary Color</label>
-                <input
-                  type="text"
-                  value={siteConfig?.primary_color || ''}
-                  onChange={(e) => setSiteConfig(prev => prev ? { ...prev, primary_color: e.target.value } : null)}
-                  onBlur={() => siteConfig && saveSiteConfig({ primary_color: siteConfig.primary_color })}
-                  placeholder="#2741e8"
-                />
-              </div>
-            </div>
-          </div>
         ) : (
-          <div className={styles.contentSection}>
-            <h2>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
-            <div className={styles.fieldsList}>
-              {SCREEN_FIELDS[activeTab]?.map(field => (
-                <div key={field} className={styles.editField}>
-                  <div className={styles.fieldHeader}>
-                    <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-                    {editingKey !== field && (
-                      <button
-                        className={styles.btnEdit}
-                        onClick={() => startEdit(field)}
-                      >
-                        Edit
-                      </button>
-                    )}
-                  </div>
+          <div className={styles.demoSection}>
+            <h1>{content[activeScreen]?.title || activeScreen.charAt(0).toUpperCase() + activeScreen.slice(1)}</h1>
 
-                  {editingKey === field ? (
-                    <div className={styles.editMode}>
-                      {field === 'description' || field === 'instructions' || field === 'welcome' || field === 'thankyou' ? (
-                        <textarea
-                          value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
-                          placeholder={`Enter ${field}...`}
-                          rows={4}
-                        />
-                      ) : (
-                        <input
-                          type="text"
-                          value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
-                          placeholder={`Enter ${field}...`}
-                        />
-                      )}
-                      <div className={styles.editActions}>
-                        <button
-                          className={styles.btnSave}
-                          onClick={() => saveField(field)}
-                          disabled={isSaving}
-                        >
-                          {isSaving ? 'Saving...' : 'Save'}
-                        </button>
-                        <button
-                          className={styles.btnCancel}
-                          onClick={cancelEdit}
-                          disabled={isSaving}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className={styles.viewMode}>
-                      <p className={styles.fieldValue}>
-                        {content[activeTab]?.[field] || '(Not set)'}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            {content[activeScreen]?.image && (
+              <div className={styles.demoImage}>
+                <img src={content[activeScreen]?.image} alt={content[activeScreen]?.title} />
+              </div>
+            )}
+
+            {content[activeScreen]?.subtitle && (
+              <h2 className={styles.subtitle}>{content[activeScreen]?.subtitle}</h2>
+            )}
+
+            {content[activeScreen]?.description && (
+              <p className={styles.description}>{content[activeScreen]?.description}</p>
+            )}
+
+            {content[activeScreen]?.welcome && (
+              <p className={styles.content}>{content[activeScreen]?.welcome}</p>
+            )}
+
+            {content[activeScreen]?.instructions && (
+              <div className={styles.content}>{content[activeScreen]?.instructions}</div>
+            )}
+
+            {content[activeScreen]?.thankyou && (
+              <p className={styles.content}>{content[activeScreen]?.thankyou}</p>
+            )}
+
+            {content[activeScreen]?.cta_text && (
+              <button className={styles.ctaButton}>{content[activeScreen]?.cta_text}</button>
+            )}
+
+            {content[activeScreen]?.button && (
+              <button className={styles.ctaButton}>{content[activeScreen]?.button}</button>
+            )}
+
+            {content[activeScreen]?.stream_url && (
+              <p className={styles.streamUrl}>Stream: {content[activeScreen]?.stream_url}</p>
+            )}
+
+            {content[activeScreen]?.status && (
+              <p className={styles.status}>Status: {content[activeScreen]?.status}</p>
+            )}
           </div>
         )}
       </main>
