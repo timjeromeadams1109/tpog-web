@@ -2,29 +2,39 @@
 .spinner { width: 40px; height: 40px; border: 3px solid #eee; border-top-color: #2741e8; border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.appContainer { display: flex; flex-direction: column; height: 100vh; background: white; }
+.appContainer { display: flex; flex-direction: column; height: 100vh; background: white; position: relative; }
 
-.header { background: white; border-bottom: 1px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 99; }
-
-.navbar { padding: 0; }
-.navContainer { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 1400px; margin: 0 auto; }
-
-.hamburger { display: none; background: none; border: none; cursor: pointer; width: 40px; height: 40px; flex-direction: column; justify-content: center; gap: 6px; }
+.hamburger { position: absolute; top: 12px; left: 12px; background: none; border: none; cursor: pointer; z-index: 100; width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: #2741e8; transition: 0.3s; }
 
-.navBrand { flex-shrink: 0; }
-.logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #2741e8; text-decoration: none; letter-spacing: 1px; }
+.drawerOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 40; }
+.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: white; z-index: 50; transition: left 0.3s; overflow-y: auto; }
+.drawer.drawerOpen { left: 0; }
+.drawerHeader { padding: 20px; border-bottom: 1px solid rgba(39,65,232,0.2); }
+.drawerHeader h2 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 18px; color: #0f0f0f; }
+.drawerTagline, .drawerDenom, .drawerPastor { margin: 4px 0; font-size: 12px; color: #666; }
+.drawerNav { display: flex; flex-direction: column; padding: 12px 0; }
+.drawerItem { background: none; border: none; padding: 12px 16px; text-align: left; cursor: pointer; font-size: 14px; color: #666; transition: 0.2s; border-left: 3px solid transparent; }
+.drawerItem:hover { background: #f6f6f6; }
+.drawerItem.drawerItemActive { background: rgba(39,65,232,0.08); color: #2741e8; border-left-color: #2741e8; font-weight: 600; }
 
-.navMenu { display: flex; gap: 0; align-items: center; margin: 0 auto; }
-.navLink { background: none; border: none; padding: 12px 20px; cursor: pointer; color: #666; font-size: 13px; font-weight: 500; transition: 0.2s; text-decoration: none; white-space: nowrap; }
-.navLink:hover { color: #2741e8; }
-.navLink.active { color: #2741e8; font-weight: 600; border-bottom: 2px solid #2741e8; }
+.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.screenContainer { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 
-.adminBtn { background: none; border: none; cursor: pointer; font-size: 20px; padding: 8px; margin-left: auto; }
+.bottomNav { display: flex; height: 62px; background: white; border-top: 1px solid rgba(0,0,0,0.1); align-items: stretch; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+.homeBtn { background: none; border: none; border-right: 1px solid rgba(0,0,0,0.1); width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; color: #999; transition: 0.2s; }
+.homeBtn span:first-child { font-size: 24px; }
+.homeBtn span:last-child { font-size: 10px; font-weight: 500; }
+.homeBtn.active { color: #2741e8; }
+.navDivider { width: 1px; height: 32px; background: rgba(0,0,0,0.1); margin: auto 0; }
+.navScroll { flex: 1; display: flex; overflow-x: auto; gap: 0; }
+.navItem { background: none; border: none; cursor: pointer; color: #999; white-space: nowrap; min-width: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; padding: 0 8px; }
+.navItem span:first-child { font-size: 24px; }
+.navItem span:last-child { font-size: 10px; font-weight: 500; margin-top: 2px; }
+.navItem:hover { color: #2741e8; }
+.navItem.active { color: #2741e8; }
 
-.drawerOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 40; display: none; }
-
-.main { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+.adminIcon { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: #2741e8; color: white; border: none; cursor: pointer; font-size: 24px; z-index: 60; }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
 .modalBox { background: white; padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; }
@@ -36,27 +46,23 @@
 .modalBox button[type="button"] { background: #ddd; color: #111; }
 .error { color: #991b1b; font-size: 12px; padding: 8px; background: #fee2e2; border-radius: 4px; }
 
-.adminContainer { display: flex; flex-direction: column; height: 100vh; background: white; }
+.adminContainer { display: flex; flex-direction: column; min-height: 100vh; background: white; }
 .adminHeader { background: #2741e8; color: white; padding: 20px; }
 .headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
 .logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .navMenu { position: fixed; left: -300px; top: 60px; width: 300px; height: calc(100vh - 60px); background: white; flex-direction: column; gap: 0; border-right: 1px solid #eee; padding: 20px 0; transition: left 0.3s; }
-  .navMenuOpen { left: 0; }
-  .drawerOverlay { display: block; }
-  .navLink { width: 100%; padding: 16px 20px; border-bottom: none; border-left: 3px solid transparent; }
-  .navLink.active { border-left-color: #2741e8; border-bottom: none; }
-  .navBrand { flex: 1; }
-  .navContainer { padding: 12px 16px; }
+  .drawer { width: 250px; left: -250px; }
+  .hamburger { width: 36px; }
+  .hamburger span { width: 20px; }
 }
 
 @media (max-width: 480px) {
-  .navBrand { min-width: 0; }
-  .logo { font-size: 16px; }
-  .navLink { padding: 14px 16px; font-size: 12px; }
-  .hamburger { width: 36px; }
-  .hamburger span { width: 20px; height: 1.5px; }
-  .navMenu { width: 280px; top: 56px; }
+  .drawer { width: 240px; left: -240px; }
+  .homeBtn { width: 65px; }
+  .navItem { min-width: 65px; padding: 0 4px; }
+  .navItem span:first-child { font-size: 22px; }
+  .navItem span:last-child { font-size: 9px; margin-top: 1px; }
+  .homeBtn span:last-child { font-size: 9px; }
+  .adminIcon { width: 44px; height: 44px; font-size: 20px; bottom: 16px; right: 16px; }
 }

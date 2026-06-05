@@ -92,52 +92,87 @@ export default function App() {
     <div className={styles.appContainer}>
       {drawerOpen && <div className={styles.drawerOverlay} onClick={() => setDrawerOpen(false)} />}
 
-      <header className={styles.header}>
-        <nav className={styles.navbar}>
-          <div className={styles.navContainer}>
-            <button className={styles.hamburger} onClick={() => setDrawerOpen(!drawerOpen)}>
-              <span></span>
-              <span></span>
-              <span></span>
+      <div className={`${styles.drawer} ${drawerOpen ? styles.drawerOpen : ''}`}>
+        <div className={styles.drawerHeader}>
+          <h2>{siteConfig?.church_name || 'TPOG'}</h2>
+          {siteConfig?.tagline && <p className={styles.drawerTagline}>{siteConfig.tagline}</p>}
+          {siteConfig?.denomination && <p className={styles.drawerDenom}>{siteConfig.denomination}</p>}
+          {siteConfig?.pastor_name && <p className={styles.drawerPastor}>{siteConfig.pastor_name}</p>}
+        </div>
+        <nav className={styles.drawerNav}>
+          {[
+            { key: 'home', label: 'Home' },
+            ...menuItems.map(item => ({ key: item.module_key, label: item.display_text })),
+          ].map(item => (
+            <button
+              key={item.key}
+              className={`${styles.drawerItem} ${activeScreen === item.key ? styles.drawerItemActive : ''}`}
+              onClick={() => {
+                setActiveScreen(item.key)
+                setDrawerOpen(false)
+              }}
+            >
+              {item.label}
             </button>
+          ))}
+        </nav>
+      </div>
 
-            <div className={styles.navBrand}>
-              <a href="#" onClick={() => setActiveScreen('home')} className={styles.logo}>
-                {siteConfig?.church_name || 'TPOG'}
-              </a>
-            </div>
+      <main className={styles.mainContent}>
+        <button className={styles.hamburger} onClick={() => setDrawerOpen(!drawerOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-            <nav className={`${styles.navMenu} ${drawerOpen ? styles.navMenuOpen : ''}`}>
-              <button
-                className={`${styles.navLink} ${activeScreen === 'home' ? styles.active : ''}`}
-                onClick={() => { setActiveScreen('home'); setDrawerOpen(false); }}
-              >
-                Home
-              </button>
-              {menuItems.map(item => (
+        <div className={styles.screenContainer}>
+          <CurrentScreen />
+        </div>
+
+        <nav className={styles.bottomNav}>
+          <button
+            className={`${styles.homeBtn} ${activeScreen === 'home' ? styles.active : ''}`}
+            onClick={() => setActiveScreen('home')}
+          >
+            <span className="material-icons-outlined">home</span>
+            <span>Home</span>
+          </button>
+          <div className={styles.navDivider}></div>
+          <div className={styles.navScroll}>
+            {menuItems.map(item => {
+              const iconMap: Record<string, string> = {
+                'post': 'article',
+                'chat': 'chat_bubble',
+                'watch': 'ondemand_video',
+                'vod': 'ondemand_video',
+                'resources': 'link',
+                'donate': 'favorite',
+                'event': 'calendar_today',
+                'sermon': 'description',
+                'podcasts': 'podcasts',
+              }
+              const icon = iconMap[item.module_key] || 'circle'
+              return (
                 <button
                   key={item.module_key}
-                  className={`${styles.navLink} ${activeScreen === item.module_key ? styles.active : ''}`}
-                  onClick={() => { setActiveScreen(item.module_key); setDrawerOpen(false); }}
+                  className={`${styles.navItem} ${activeScreen === item.module_key ? styles.active : ''}`}
+                  onClick={() => setActiveScreen(item.module_key)}
                 >
-                  {item.display_text}
+                  <span className="material-icons-outlined">{icon}</span>
+                  <span>{item.display_text}</span>
                 </button>
-              ))}
-            </nav>
-
-            <button
-              className={styles.adminBtn}
-              onClick={() => setShowLoginModal(true)}
-              title="Admin"
-            >
-              ⚙️
-            </button>
+              )
+            })}
           </div>
         </nav>
-      </header>
 
-      <main className={styles.main}>
-        <CurrentScreen />
+        <button
+          className={styles.adminIcon}
+          onClick={() => setShowLoginModal(true)}
+          title="Admin"
+        >
+          ⚙️
+        </button>
       </main>
 
       {showLoginModal && (
