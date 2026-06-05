@@ -88,18 +88,6 @@ export default function App() {
 
   const CurrentScreen = screenMap[activeScreen] || HomeScreen
 
-  const menuMap: Record<string, string> = {
-    'post': 'Community',
-    'chat': 'Chat',
-    'watch': 'Watch',
-    'vod': 'Videos',
-    'resources': 'Resources',
-    'donate': 'Give',
-    'event': 'Events',
-    'sermon': 'Sermons',
-    'podcasts': 'Podcasts',
-  }
-
   return (
     <div className={styles.appContainer}>
       {drawerOpen && <div className={styles.drawerOverlay} onClick={() => setDrawerOpen(false)} />}
