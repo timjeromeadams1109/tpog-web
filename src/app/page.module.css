@@ -2,7 +2,7 @@
 .spinner { width: 40px; height: 40px; border: 3px solid #eee; border-top-color: #2741e8; border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.appContainer { display: flex; flex-direction: column; min-height: 100vh; background: white; position: relative; }
+.appContainer { display: flex; flex-direction: column; height: 100vh; background: white; position: relative; }
 
 .hamburger { position: absolute; top: 12px; left: 12px; background: none; border: none; cursor: pointer; z-index: 100; width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: #2741e8; transition: 0.3s; }
@@ -18,10 +18,10 @@
 .drawerItem:hover { background: #f6f6f6; }
 .drawerItem.drawerItemActive { background: rgba(39,65,232,0.08); color: #2741e8; border-left-color: #2741e8; font-weight: 600; }
 
-.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; margin-top: 40px; }
-.screenContainer { flex: 1; overflow-y: auto; padding-bottom: 62px; overflow-x: hidden; }
+.mainContent { flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.screenContainer { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 
-.bottomNav { display: flex; height: 62px; background: white; border-top: 1px solid rgba(0,0,0,0.1); align-items: stretch; position: relative; }
+.bottomNav { display: flex; height: 62px; background: white; border-top: 1px solid rgba(0,0,0,0.1); align-items: stretch; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
 .homeBtn { background: none; border: none; border-right: 1px solid rgba(0,0,0,0.1); width: 70px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; color: #999; transition: 0.2s; }
 .homeBtn span:first-child { font-size: 24px; }
 .homeBtn span:last-child { font-size: 10px; font-weight: 500; }
@@ -51,6 +51,40 @@
 .headerContent { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
 .logoutBtn { background: white; color: #2741e8; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
+@media (max-width: 1024px) {
+  .hamburger { top: 8px; left: 8px; width: 36px; height: 36px; }
+  .hamburger span { width: 20px; }
+  .drawer { width: 260px; left: -260px; }
+  .navItem { min-width: 70px; padding: 0 6px; }
+  .navItem span:last-child { font-size: 9px; }
+}
+
 @media (max-width: 768px) {
-  .drawer { width: 250px; left: -250px; }
+  .hamburger { top: 8px; left: 8px; }
+  .drawer { width: 240px; left: -240px; }
+  .homeBtn { width: 65px; }
+  .navItem { min-width: 65px; padding: 0 4px; }
+  .navItem span:first-child { font-size: 22px; }
+  .navItem span:last-child { font-size: 9px; margin-top: 1px; }
+  .homeBtn span:last-child { font-size: 9px; }
+  .adminIcon { width: 44px; height: 44px; font-size: 20px; bottom: 16px; right: 16px; }
+  .modalBox { padding: 24px; max-width: 90vw; }
+}
+
+@media (max-width: 480px) {
+  .hamburger { width: 32px; height: 32px; gap: 4px; }
+  .hamburger span { width: 18px; height: 1.5px; }
+  .drawer { width: 220px; left: -220px; }
+  .drawerHeader { padding: 16px; }
+  .drawerHeader h2 { font-size: 16px; }
+  .drawerItem { padding: 10px 12px; font-size: 13px; }
+  .homeBtn { width: 60px; }
+  .homeBtn span:first-child { font-size: 20px; }
+  .homeBtn span:last-child { font-size: 8px; }
+  .navItem { min-width: 60px; padding: 0 2px; }
+  .navItem span:first-child { font-size: 20px; }
+  .navItem span:last-child { font-size: 8px; margin-top: 0px; }
+  .navDivider { height: 28px; }
+  .adminIcon { width: 40px; height: 40px; font-size: 18px; bottom: 12px; right: 12px; }
+  .modalBox { padding: 20px; margin: 20px; }
 }
