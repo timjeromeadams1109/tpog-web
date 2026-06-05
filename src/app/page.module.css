@@ -120,6 +120,24 @@
   background: #f0f0f0;
 }
 
+.message {
+  max-width: 1200px;
+  margin: 16px auto;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.messageSuccess {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.messageError {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
 .tabs {
   max-width: 1200px;
   margin: 0 auto;
@@ -169,66 +187,176 @@
 
 .contentSection h2 {
   font-size: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   color: #111;
 }
 
-.contentList {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 16px;
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 40px;
 }
 
-.contentItem {
+.fieldsList {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 16px;
-  padding: 12px;
-  background: #f9fafb;
-  border-radius: 6px;
+  gap: 20px;
+}
+
+.editField {
   border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafaf8;
 }
 
-.contentLabel {
+.fieldHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fieldHeader label {
   font-weight: 600;
   color: #333;
-  word-break: break-word;
+  margin: 0;
 }
 
-.contentValue {
-  color: #666;
+.btnEdit {
+  background: #2741e8;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnEdit:hover {
+  background: #1a2fb0;
+}
+
+.viewMode {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.fieldValue {
   white-space: pre-wrap;
   word-break: break-word;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
 }
 
-.noContent {
-  color: #999;
-  font-style: italic;
-  padding: 20px;
-  text-align: center;
-  background: #fafaf8;
+.editMode {
+  display: grid;
+  gap: 12px;
+}
+
+.editMode input,
+.editMode textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
 }
 
-.helpText {
-  font-size: 12px;
-  color: #999;
-  margin-top: 16px;
-  padding: 12px;
-  background: #f9fafb;
-  border-radius: 4px;
+.editMode textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.editMode input:focus,
+.editMode textarea:focus {
+  outline: none;
+  border-color: #2741e8;
+  box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
+}
+
+.editActions {
+  display: flex;
+  gap: 8px;
+}
+
+.btnSave,
+.btnCancel {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btnSave {
+  background: #2741e8;
+  color: white;
+}
+
+.btnSave:hover:not(:disabled) {
+  background: #1a2fb0;
+}
+
+.btnSave:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnCancel {
+  background: #ddd;
+  color: #111;
+}
+
+.btnCancel:hover:not(:disabled) {
+  background: #ccc;
+}
+
+.btnCancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.configGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.configField {
+  display: flex;
+  flex-direction: column;
+}
+
+.configField label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.configField input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.configField input:focus {
+  outline: none;
+  border-color: #2741e8;
+  box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
 }
 
 @media (max-width: 768px) {
-  .contentItem {
-    grid-template-columns: 1fr;
-  }
-
-  .headerContent {
-    flex-direction: column;
-    gap: 16px;
-  }
-
   .main {
     padding: 12px;
   }
@@ -245,5 +373,14 @@
   .tab {
     padding: 10px 12px;
     font-size: 12px;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .configGrid {
+    grid-template-columns: 1fr;
   }
 }
