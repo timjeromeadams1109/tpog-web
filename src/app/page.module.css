@@ -8,15 +8,15 @@
 .hamburger span { display: block; width: 24px; height: 2px; background: #2741e8; transition: 0.3s; }
 
 .drawerOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 45; }
-.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: white; z-index: 50; transition: left 0.3s; overflow-y: auto; box-shadow: 2px 0 8px rgba(0,0,0,0.15); }
+.drawer { position: fixed; left: -280px; top: 0; width: 280px; height: 100vh; background: linear-gradient(135deg, #2741e8 0%, #1a2fb0 100%); z-index: 50; transition: left 0.3s; overflow-y: auto; box-shadow: 2px 0 12px rgba(0,0,0,0.3); }
 .drawer.drawerOpen { left: 0; }
-.drawerHeader { padding: 20px; border-bottom: 1px solid rgba(39,65,232,0.2); }
-.drawerHeader h2 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 18px; color: #0f0f0f; }
-.drawerTagline, .drawerDenom, .drawerPastor { margin: 4px 0; font-size: 12px; color: #666; }
+.drawerHeader { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.2); text-align: center; }
+.drawerHeader h2 { margin: 0 0 8px 0; font-family: 'Cinzel', serif; font-size: 20px; color: white; font-weight: 700; }
+.drawerTagline, .drawerDenom, .drawerPastor { margin: 4px 0; font-size: 12px; color: rgba(255,255,255,0.85); }
 .drawerNav { display: flex; flex-direction: column; padding: 12px 0; }
-.drawerItem { background: none; border: none; padding: 12px 16px; text-align: left; cursor: pointer; font-size: 14px; color: #666; transition: 0.2s; border-left: 3px solid transparent; }
-.drawerItem:hover { background: #f6f6f6; }
-.drawerItem.drawerItemActive { background: rgba(39,65,232,0.08); color: #2741e8; border-left-color: #2741e8; font-weight: 600; }
+.drawerItem { background: none; border: none; padding: 14px 20px; text-align: left; cursor: pointer; font-size: 14px; color: white; transition: 0.2s; border-left: 3px solid transparent; display: flex; align-items: center; gap: 12px; }
+.drawerItem:hover { background: rgba(255,255,255,0.1); }
+.drawerItem.drawerItemActive { background: rgba(255,255,255,0.15); border-left-color: white; font-weight: 600; }
 
 .mainContent { flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 .screenContainer { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; padding-bottom: 62px; }
