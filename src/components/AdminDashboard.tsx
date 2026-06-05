@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import styles from './admin.module.css'
 
-export default function AdminDashboard({ siteConfig, onRefresh }: any) {
+export default function AdminDashboard({ siteConfig }: any) {
   const [tab, setTab] = useState('overview')
 
   return (
