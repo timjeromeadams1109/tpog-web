@@ -100,21 +100,33 @@ export default function App() {
           {siteConfig?.pastor_name && <p className={styles.drawerPastor}>{siteConfig.pastor_name}</p>}
         </div>
         <nav className={styles.drawerNav}>
-          {[
-            { key: 'home', label: 'Home' },
-            ...menuItems.map(item => ({ key: item.module_key, label: item.display_text })),
-          ].map(item => (
-            <button
-              key={item.key}
-              className={`${styles.drawerItem} ${activeScreen === item.key ? styles.drawerItemActive : ''}`}
-              onClick={() => {
-                setActiveScreen(item.key)
-                setDrawerOpen(false)
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
+          {menuItems.map(item => {
+            const iconMap: Record<string, string> = {
+              'post': 'article',
+              'chat': 'chat_bubble',
+              'watch': 'ondemand_video',
+              'vod': 'ondemand_video',
+              'resources': 'link',
+              'donate': 'favorite',
+              'event': 'calendar_today',
+              'sermon': 'description',
+              'podcasts': 'podcasts',
+            }
+            const icon = iconMap[item.module_key] || 'circle'
+            return (
+              <button
+                key={item.module_key}
+                className={`${styles.drawerItem} ${activeScreen === item.module_key ? styles.drawerItemActive : ''}`}
+                onClick={() => {
+                  setActiveScreen(item.module_key)
+                  setDrawerOpen(false)
+                }}
+              >
+                <span className="material-icons-outlined">{icon}</span>
+                <span>{item.display_text}</span>
+              </button>
+            )
+          })}
         </nav>
       </div>
 
