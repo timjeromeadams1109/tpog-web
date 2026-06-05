@@ -61,22 +61,31 @@ export default function HomeScreen() {
       )}
 
       {settings?.show_countdown && (
-        <div className={styles.countdownBar} style={{ background: primaryColor }}>
-          <div className={styles.countdownItem}>
-            <div className={styles.countdownValue}>{countdown.d}</div>
-            <div className={styles.countdownLabel}>DAYS</div>
+        <div className={styles.countdownSection} style={{ background: primaryColor }}>
+          <div className={styles.countdownTitle}>
+            <span>Countdown To</span>
+            <span className={styles.countdownEvent}>{settings.countdown_label || 'LIVE SERVICE'}</span>
           </div>
-          <div className={styles.countdownItem}>
-            <div className={styles.countdownValue}>{countdown.h}</div>
-            <div className={styles.countdownLabel}>HOURS</div>
-          </div>
-          <div className={styles.countdownItem}>
-            <div className={styles.countdownValue}>{countdown.m}</div>
-            <div className={styles.countdownLabel}>MINS</div>
-          </div>
-          <div className={styles.countdownItem}>
-            <div className={styles.countdownValue}>{countdown.s}</div>
-            <div className={styles.countdownLabel}>SECS</div>
+          <div className={styles.countdownBar}>
+            <div className={styles.countdownItem}>
+              <div className={styles.countdownValue}>{countdown.d}</div>
+              <div className={styles.countdownLabel}>Day</div>
+            </div>
+            <div className={styles.countdownDivider}></div>
+            <div className={styles.countdownItem}>
+              <div className={styles.countdownValue}>{countdown.h}</div>
+              <div className={styles.countdownLabel}>Hours</div>
+            </div>
+            <div className={styles.countdownDivider}></div>
+            <div className={styles.countdownItem}>
+              <div className={styles.countdownValue}>{countdown.m}</div>
+              <div className={styles.countdownLabel}>Minute</div>
+            </div>
+            <div className={styles.countdownDivider}></div>
+            <div className={styles.countdownItem}>
+              <div className={styles.countdownValue}>{countdown.s}</div>
+              <div className={styles.countdownLabel}>Secs</div>
+            </div>
           </div>
         </div>
       )}
