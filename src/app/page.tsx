@@ -78,7 +78,7 @@ export default function App() {
             <button onClick={logout} className={styles.logoutBtn}>Logout</button>
           </div>
         </header>
-        <AdminDashboard siteConfig={siteConfig} />
+        <AdminDashboard />
       </div>
     )
   }
