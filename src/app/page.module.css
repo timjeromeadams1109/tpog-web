@@ -1,77 +1,69 @@
-.loginContainer {
+
+.loadingContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #2741e8 0%, #1a2fb0 100%);
-  padding: 20px;
+  background: #f6f5f2;
 }
 
-.loginBox {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #eee;
+  border-top: 3px solid #2741e8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
-.loginBox h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #111;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.loginSubtitle {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 24px;
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f5f5;
 }
 
-.field {
-  margin-bottom: 16px;
-}
-
-.field label {
-  display: block;
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.field input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.loginError {
-  color: #991b1b;
-  font-size: 12px;
-  margin: 12px 0;
-  text-align: center;
-  padding: 8px;
-  background: #fee2e2;
-  border-radius: 4px;
-}
-
-.btnPrimary {
-  width: 100%;
-  padding: 12px;
+.adminHeader {
   background: #2741e8;
   color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.btnPrimary:hover {
-  background: #1a2fb0;
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerContent h1 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.logoutBtn {
+  background: white;
+  color: #2741e8;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logoutBtn:hover {
+  background: #f0f0f0;
 }
 
 .appContainer {
@@ -84,16 +76,8 @@
 .header {
   background: #2741e8;
   color: white;
-  padding: 24px 20px;
+  padding: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.headerContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .header h1 {
@@ -101,57 +85,30 @@
   margin-bottom: 4px;
 }
 
-.tagline {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.btnLogout,
-.btnAdmin {
+.adminBtn {
   background: white;
   color: #2741e8;
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
 }
 
-.btnLogout:hover,
-.btnAdmin:hover {
+.adminBtn:hover {
   background: #f0f0f0;
 }
 
-.message {
-  max-width: 1200px;
-  margin: 16px auto;
-  padding: 12px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.messageSuccess {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.messageError {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.tabs {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 20px;
+.navigation {
   display: flex;
   gap: 8px;
+  padding: 0 20px;
   border-bottom: 2px solid #ddd;
   overflow-x: auto;
+  background: white;
 }
 
-.tab {
+.navBtn {
   padding: 12px 20px;
   background: none;
   border: none;
@@ -163,13 +120,13 @@
   white-space: nowrap;
 }
 
-.tab:hover {
-  color: #2741e8;
-}
-
-.tabActive {
+.navBtn.active {
   color: #2741e8;
   border-bottom-color: #2741e8;
+}
+
+.navBtn:hover {
+  color: #2741e8;
 }
 
 .main {
@@ -180,284 +137,99 @@
   padding: 20px;
 }
 
-.contentSection {
-  background: white;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.contentSection h2 {
-  font-size: 20px;
+.modalContent {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.modalContent h2 {
   margin-bottom: 24px;
   color: #111;
+  font-size: 24px;
 }
 
-.loading {
-  text-align: center;
-  color: #666;
-  padding: 40px;
-}
-
-.fieldsList {
-  display: grid;
-  gap: 20px;
-}
-
-.editField {
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 16px;
-  background: #fafaf8;
-}
-
-.fieldHeader {
+.modalContent form {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.fieldHeader label {
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-}
-
-.btnEdit {
-  background: #2741e8;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btnEdit:hover {
-  background: #1a2fb0;
-}
-
-.viewMode {
-  background: white;
+.modalContent input {
   padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-}
-
-.fieldValue {
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: #333;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.editMode {
-  display: grid;
-  gap: 12px;
-}
-
-.editMode input,
-.editMode textarea {
-  width: 100%;
-  padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
 }
 
-.editMode textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.editMode input:focus,
-.editMode textarea:focus {
+.modalContent input:focus {
   outline: none;
   border-color: #2741e8;
   box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
 }
 
-.editActions {
-  display: flex;
-  gap: 8px;
-}
-
-.btnSave,
-.btnCancel {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  flex: 1;
-}
-
-.btnSave {
+.modalContent button {
+  padding: 12px;
   background: #2741e8;
   color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.btnSave:hover:not(:disabled) {
+.modalContent button:hover {
   background: #1a2fb0;
 }
 
-.btnSave:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btnCancel {
+.modalContent button[type="button"] {
   background: #ddd;
   color: #111;
 }
 
-.btnCancel:hover:not(:disabled) {
+.modalContent button[type="button"]:hover {
   background: #ccc;
 }
 
-.btnCancel:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.configGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.configField {
-  display: flex;
-  flex-direction: column;
-}
-
-.configField label {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-.configField input {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: inherit;
-}
-
-.configField input:focus {
-  outline: none;
-  border-color: #2741e8;
-  box-shadow: 0 0 0 2px rgba(39, 65, 232, 0.1);
-}
-
-.demoSection {
-  background: white;
-  border-radius: 8px;
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.demoSection h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
-  color: #111;
-}
-
-.subtitle {
-  font-size: 20px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.demoImage {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px 0;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.demoImage img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.description {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.content {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.ctaButton {
-  background: #2741e8;
-  color: white;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.ctaButton:hover {
-  background: #1a2fb0;
-}
-
-.streamUrl,
-.status {
-  font-size: 14px;
-  color: #666;
-  margin-top: 12px;
-  padding: 12px;
-  background: #f9fafb;
-  border-radius: 6px;
+.error {
+  color: #991b1b;
+  font-size: 12px;
+  padding: 8px;
+  background: #fee2e2;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {
-  .main {
-    padding: 12px;
-  }
-
-  .contentSection {
-    padding: 16px;
-  }
-
-  .tabs {
+  .navigation {
     padding: 0 12px;
-    gap: 4px;
   }
 
-  .tab {
+  .navBtn {
     padding: 10px 12px;
     font-size: 12px;
+  }
+
+  .main {
+    padding: 12px;
   }
 
   .headerContent {
     flex-direction: column;
     gap: 16px;
-  }
-
-  .configGrid {
-    grid-template-columns: 1fr;
   }
 }

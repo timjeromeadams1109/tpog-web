@@ -1,0 +1,37 @@
+TPOG COMPLETE APPLICATION BUILD MANIFEST
+
+SCREENS TO BUILD:
+✅ HomeScreen - Hero carousel + countdown timer
+🔲 ChatScreen - AI chatbot
+🔲 PrayerScreen - Prayer requests with approval workflow
+🔲 GiveScreen - Donations/giving links
+🔲 LiveScreen - Live streaming
+🔲 EventsScreen - Event listing with categories
+🔲 PodcastsScreen - Resource/podcast links
+🔲 VodScreen - Video library
+
+ADMIN DASHBOARD:
+🔲 AdminDashboard - Main admin hub
+🔲 Admin sections for each data type
+
+DATA TABLES REQUIRED:
+- app_settings (colors, branding)
+- site_config (church info)
+- home_settings (countdown, hero image)
+- app_menu_items (navigation)
+- hero_slides (carousel images)
+- events (with categories, featured, RSVP)
+- prayer_requests (approval needed)
+- posts (community posts)
+- donations (giving options)
+- custom_links (podcasts/resources)
+- video_library (VOD)
+- service_times
+- sermons
+- app_content (key-value pairs)
+
+BUILD STRATEGY:
+1. Create minimal screen stubs
+2. Build full admin dashboard with all CRUD
+3. Implement screens one by one
+4. Test and deploy
