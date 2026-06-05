@@ -48,30 +48,49 @@ export default function PrayerScreen() {
   return (
     <div className={styles.prayerScreen}>
       <h1 className={styles.screenTitle}>PRAYER WALL</h1>
-      <button onClick={() => setShowForm(!showForm)} className={styles.submitBtn}>Submit Prayer Request</button>
+      
+      <button onClick={() => setShowForm(!showForm)} className={styles.toggleFormBtn}>
+        {showForm ? '✕' : '✎'} {showForm ? 'Close' : 'Submit Prayer Request'}
+      </button>
+
       {showForm && (
-        <div className={styles.formBox}>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <div className={styles.prayerForm}>
+          <label className={styles.formCheckbox}>
+            <input type="checkbox" checked={anon} onChange={(e) => setAnon(e.target.checked)} />
+            Submit anonymously
+          </label>
+          {!anon && <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className={styles.formInput} />}
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className={styles.formInput}>
             {CATEGORIES.filter(c => c !== 'All').map(c => <option key={c} value={c}>{c}</option>)}
           </select>
-          <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Prayer request..." rows={4} />
-          <label><input type="checkbox" checked={anon} onChange={(e) => setAnon(e.target.checked)} /> Anonymous</label>
-          <button onClick={handleSubmit}>Submit</button>
-          <button onClick={() => setShowForm(false)}>Cancel</button>
+          <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Your prayer request..." rows={3} className={styles.formInput} />
+          <button onClick={handleSubmit} className={styles.submitBtn}>📤 Submit Prayer</button>
         </div>
       )}
-      <div className={styles.filters}>{CATEGORIES.map(c => <button key={c} className={filter === c ? styles.filterActive : ''} onClick={() => setFilter(c)}>{c}</button>)}</div>
+
+      <div className={styles.categoryFilters}>
+        {CATEGORIES.map(c => (
+          <button key={c} className={`${styles.categoryPill} ${filter === c ? styles.categoryPillActive : ''}`} onClick={() => setFilter(c)}>
+            {c}
+          </button>
+        ))}
+      </div>
+
       <div className={styles.prayerList}>
         {filtered.map(p => (
-          <div key={p.id} className={styles.prayerItem}>
+          <div key={p.id} className={styles.prayerCard}>
             <div className={styles.prayerHeader}>
-              <h3>{p.name}</h3>
-              <span className={styles.time}>{formatTime(p.created_at)}</span>
+              <div className={styles.avatarCircle}>{p.name ? p.name[0].toUpperCase() : '?'}</div>
+              <div className={styles.prayerInfo}>
+                <h3>{p.name}</h3>
+                <p>{formatTime(p.created_at)}</p>
+              </div>
+              <span className={styles.prayerCategory}>{p.category}</span>
             </div>
-            <span className={styles.category}>{p.category}</span>
-            <p>{p.text}</p>
-            <button onClick={() => prayCount(p.id, p.pray_count || 0)} className={styles.prayBtn}>🙏 Pray ({p.pray_count || 0})</button>
+            <p className={styles.prayerText}>{p.text}</p>
+            <button onClick={() => prayCount(p.id, p.pray_count || 0)} className={styles.prayButton}>
+              🙏 Pray ({p.pray_count || 0})
+            </button>
           </div>
         ))}
       </div>
