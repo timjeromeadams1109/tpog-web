@@ -49,7 +49,7 @@ export default function HomeScreen() {
 
   return (
     <div className={styles.homeContainer}>
-      {heroSlides[current] && (
+      {heroSlides[current] ? (
         <div className={styles.heroCarousel}>
           <img src={heroSlides[current].image_url} alt="Hero" />
           <div className={styles.heroDots}>
@@ -57,6 +57,10 @@ export default function HomeScreen() {
               <span key={i} className={i === current ? styles.dotActive : ''} onClick={() => setCurrent(i)} />
             ))}
           </div>
+        </div>
+      ) : (
+        <div className={styles.heroCarousel} style={{ background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>
+          No images added yet
         </div>
       )}
 
