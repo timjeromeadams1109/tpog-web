@@ -59,46 +59,44 @@ export default function HomeScreen() {
           </div>
         </div>
       ) : (
-        <div className={styles.heroCarousel} style={{ background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>
+        <div style={{ height: '50vh', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '14px' }}>
           No images added yet
         </div>
       )}
 
       {settings?.show_countdown && (
         <div className={styles.countdownSection} style={{ background: primaryColor }}>
-          <div className={styles.countdownTitle}>
-            <span>Countdown To</span>
-            <span className={styles.countdownEvent}>{settings.countdown_label || 'LIVE SERVICE'}</span>
+          <div style={{ padding: '16px', minWidth: 0 }}>
+            <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)', marginBottom: '2px' }}>Countdown To</div>
+            <div style={{ fontSize: '16px', fontWeight: 700, color: 'white' }}>{settings.countdown_label || 'LIVE SERVICE'}</div>
           </div>
           <div className={styles.countdownBar}>
             <div className={styles.countdownItem}>
               <div className={styles.countdownValue}>{countdown.d}</div>
-              <div className={styles.countdownLabel}>Day</div>
+              <div className={styles.countdownLabel}>DAY</div>
             </div>
             <div className={styles.countdownDivider}></div>
             <div className={styles.countdownItem}>
               <div className={styles.countdownValue}>{countdown.h}</div>
-              <div className={styles.countdownLabel}>Hours</div>
+              <div className={styles.countdownLabel}>HOURS</div>
             </div>
             <div className={styles.countdownDivider}></div>
             <div className={styles.countdownItem}>
               <div className={styles.countdownValue}>{countdown.m}</div>
-              <div className={styles.countdownLabel}>Minute</div>
+              <div className={styles.countdownLabel}>MINS</div>
             </div>
             <div className={styles.countdownDivider}></div>
             <div className={styles.countdownItem}>
               <div className={styles.countdownValue}>{countdown.s}</div>
-              <div className={styles.countdownLabel}>Secs</div>
+              <div className={styles.countdownLabel}>SECS</div>
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ padding: '20px 16px', background: '#ffffff', minHeight: '200px' }}>
-        <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#2741e8', marginBottom: '16px', textTransform: 'uppercase' }}>Welcome to The Place of Grace</h2>
-        <p style={{ fontSize: '13px', color: '#6b7280', lineHeight: 1.6, margin: 0 }}>
-          Join us for an amazing worship experience filled with God's love and grace.
-        </p>
+      <div style={{ padding: '24px 16px', background: '#ffffff', minHeight: '200px' }}>
+        <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#2741e8', marginBottom: '16px', textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif' }}>Welcome</h2>
+        <p style={{ fontSize: '13px', color: '#6b7280', lineHeight: '1.6', margin: 0, fontFamily: 'Poppins, sans-serif' }}>Join us at The Place of Grace for worship, community, and spiritual growth. Experience God's love in a welcoming environment.</p>
       </div>
     </div>
   )
