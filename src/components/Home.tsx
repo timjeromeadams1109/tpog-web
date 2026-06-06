@@ -93,6 +93,16 @@ export default function HomeScreen() {
           </div>
         </div>
       )}
+
+      <div style={{ padding: '20px 16px', background: '#ffffff' }}>
+        <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#2741e8', marginBottom: '16px', fontFamily: 'Poppins, sans-serif', textTransform: 'uppercase' }}>Welcome</h2>
+        <p style={{ fontSize: '13px', color: '#6b7280', lineHeight: '1.6', fontFamily: 'Poppins, sans-serif' }}>
+          {siteConfig?.tagline || 'The Place of Grace Church'}
+        </p>
+        <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '12px', fontFamily: 'Poppins, sans-serif' }}>
+          Pastor: {siteConfig?.pastor_name || 'Keith L. Odom'}
+        </p>
+      </div>
     </div>
   )
 }

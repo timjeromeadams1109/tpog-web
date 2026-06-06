@@ -6,9 +6,10 @@
 .heroDots span:hover { background: rgba(255,255,255,0.7); }
 .heroDots span.dotActive { background: white; box-shadow: 0 0 8px rgba(0,0,0,0.3); }
 
-.countdownSection { color: white; background: linear-gradient(135deg, #2741e8 0%, #1a3ce0 100%); padding: 0; }
-.countdownTitle { display: flex; flex-direction: column; padding: 16px 16px 12px; font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 500; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; }
-.countdownEvent { font-size: 16px; font-weight: 700; color: white; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+.countdownSection { color: white; background: linear-gradient(135deg, #2741e8 0%, #1a3ce0 100%); padding: 0; overflow: visible; }
+.countdownTitle { display: block; padding: 16px 16px 12px; font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 500; letter-spacing: 0px; font-family: 'Poppins', sans-serif; overflow: visible; white-space: normal; }
+.countdownTitle span { display: block; }
+.countdownEvent { font-size: 16px; font-weight: 700; color: white; margin-top: 4px; letter-spacing: 0px; text-transform: uppercase; }
 .countdownBar { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0; padding: 14px 16px 16px; align-items: center; }
 .countdownDivider { width: 1px; height: 44px; background: rgba(255,255,255,0.25); }
 .countdownItem { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; }
